@@ -40,6 +40,16 @@ jacocoTestReport {
     dependsOn test
 }
 
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
+
 spotless {
     java {
         googleJavaFormat()
