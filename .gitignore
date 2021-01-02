@@ -1,0 +1,10 @@
+# Gradle
+.gradle/
+build/
+
+# generated
+lombok.config
+
+# IntelliJ IDEA
+.idea/
+out/

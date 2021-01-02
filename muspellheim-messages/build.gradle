@@ -1,0 +1,16 @@
+plugins {
+    id 'muspellheim.java-library-conventions'
+}
+
+version = '1.0.0'
+
+jar {
+    manifest {
+        attributes(
+                'Implementation-Title': 'Muspellheim Messages',
+                'Implementation-Version': archiveVersion,
+                'Implementation-Vendor': 'Falko Schumann <falko.schumann@muspellheim.de>',
+                'Automatic-Module-Name': 'de.muspellheim.messages'
+        )
+    }
+}

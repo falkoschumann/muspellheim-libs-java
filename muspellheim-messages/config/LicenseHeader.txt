@@ -1,0 +1,5 @@
+/*
+ * Muspellheim - Messages
+ * Copyright (c) $YEAR Falko Schumann <falko.schumann@muspellheim.de>
+ */
+

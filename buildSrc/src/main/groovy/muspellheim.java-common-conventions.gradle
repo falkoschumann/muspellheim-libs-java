@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'com.diffplug.spotless'
+    id 'io.freefair.lombok'
+}
+
+repositories {
+    jcenter()
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+        licenseHeaderFile('config/LicenseHeader.txt')
+    }
+}
