@@ -4,6 +4,8 @@ plugins {
     id 'maven-publish'
 }
 
+group = 'de.muspellheim'
+
 publishing {
     repositories {
         maven {
