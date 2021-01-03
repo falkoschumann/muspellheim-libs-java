@@ -1,25 +1,50 @@
 plugins {
-    id 'muspellheim.java-common-conventions'
-    id 'java-library'
-    id 'maven-publish'
+  id 'muspellheim.java-common-conventions'
+  id 'java-library'
+  id 'maven-publish'
+  id 'jacoco'
 }
 
 group = 'de.muspellheim'
 
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(8)
+  }
+}
+
+test {
+  finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+  dependsOn test
+}
+
+jacocoTestCoverageVerification {
+  violationRules {
+    rule {
+      limit {
+        minimum = 0.8
+      }
+    }
+  }
+}
+
 publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/falkoschumann/muspellheim-libs-java")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-            }
-        }
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url = uri("https://maven.pkg.github.com/falkoschumann/muspellheim-libs-java")
+      credentials {
+        username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+        password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+      }
     }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
+  }
+  publications {
+    gpr(MavenPublication) {
+      from(components.java)
     }
+  }
 }

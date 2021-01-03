@@ -1,58 +1,36 @@
 plugins {
-    id 'java'
-    id 'jacoco'
-    id 'com.diffplug.spotless'
-    id 'io.freefair.lombok'
+  id 'java'
+  id 'com.diffplug.spotless'
+  id 'io.freefair.lombok'
 }
 
 repositories {
-    jcenter()
+  jcenter()
 }
 
 compileJava {
-    options.encoding = 'UTF-8'
+  options.encoding = 'UTF-8'
 }
 
 compileTestJava {
-    options.encoding = 'UTF-8'
+  options.encoding = 'UTF-8'
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
-    }
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
 test {
-    useJUnitPlatform()
-    testLogging {
-        events("passed", "skipped", "failed")
-    }
-    finalizedBy jacocoTestReport
-}
-
-jacocoTestReport {
-    dependsOn test
-}
-
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.8
-            }
-        }
-    }
+  useJUnitPlatform()
+  testLogging {
+    events("passed", "skipped", "failed")
+  }
 }
 
 spotless {
-    java {
-        googleJavaFormat()
-        licenseHeaderFile('config/LicenseHeader.txt')
-    }
+  java {
+    googleJavaFormat()
+    licenseHeaderFile('config/LicenseHeader.txt')
+  }
 }
