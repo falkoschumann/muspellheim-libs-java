@@ -1,3 +1,5 @@
+![Java CI](https://github.com/falkoschumann/muspellheim-libs-java/workflows/Java%20CI/badge.svg)
+
 # Muspellheim Libraries
 
 Contains shared libraries.
